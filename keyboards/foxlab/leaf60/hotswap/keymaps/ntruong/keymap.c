@@ -23,11 +23,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
    * │ ` │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │ \ │ ⎋ │
    * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┤
-   * │  ↹  │ ⒉ │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ [ │ ] │  ⌫  │
+   * │  ↹  │ ⒊ │ W │ E │ R │ T │ Y │ U │ I │ O │ P │ [ │ ] │  ⌫  │
    * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┤
    * │  ⎋⌃  │ A │ S │ D │ F │ G │ H │ J │ K │ L │ ⒈ │ ' │   ↩    │
    * ├──────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴────┬───┤
-   * │   ⇧   │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │   ⇧   │ ⒈ │
+   * │   ⇧   │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │   ⇧   │ ⒉ │
    * └───────┴─┬─┴─┬─┴─┬─┴───┴───┴───┴───┴───┴─┬─┴─┬─┴─┬─────┴───┘
    *           │ ⌥ │ ⌘ │         Space         │ ⌘ │ ⌥ │
    *           └───┴───┴───────────────────────┴───┴───┘
@@ -35,9 +35,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [0] = LAYOUT_60_tsangan_hhkb(
       KC_GRV,         KC_1,        KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8,    KC_9,   KC_0,           KC_MINS, KC_EQL,  KC_BSLS, KC_ESC,
-      KC_TAB,         LT(2, KC_Q), KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I,    KC_O,   KC_P,           KC_LBRC, KC_RBRC, KC_BSPC,
+      KC_TAB,         LT(3, KC_Q), KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I,    KC_O,   KC_P,           KC_LBRC, KC_RBRC, KC_BSPC,
       LCTL_T(KC_ESC), KC_A,        KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K,    KC_L,   LT(1, KC_SCLN), KC_QUOT, KC_ENT,
-      KC_LSFT,        KC_Z,        KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,        KC_RSFT, TO(1),
+      KC_LSFT,        KC_Z,        KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,        KC_RSFT, MO(2),
       KC_LALT, KC_NO, KC_LGUI, KC_SPC, KC_RGUI, KC_NO, KC_RALT
       ),
 
@@ -61,10 +61,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, REPLAY1, REPLAY2, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL,
       _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______, _______,
       KC_CAPS, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, KC_VOLD, KC_VOLU, KC_PAUS, _______, _______, _______
+      KC_VOLD, _______, KC_VOLU, KC_MPLY, _______, _______, _______
       ),
 
-  /* Layer 2: Macro layer
+  /* Layer 2: Various system controls layer
+   *
+   * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+   * │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │
+   * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┤
+   * │     │   │   │   │   │   │   │   │   │   │   │   │   │     │
+   * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┤
+   * │      │   │   │   │   │   │   │   │   │   │   │   │        │
+   * ├──────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴────┬───┤
+   * │       │   │   │   │   │   │   │   │   │   │   │       │   │
+   * └───────┴─┬─┴─┬─┴─┬─┴───┴───┴───┴───┴───┴─┬─┴─┬─┴─┬─────┴───┘
+   *           │   │   │           ☼           │ ◐ │ ◑ │
+   *           └───┴───┴───────────────────────┴───┴───┘
+   *
+   */
+  [1] = LAYOUT_60_tsangan_hhkb(
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, BL_TOGG, BL_DEC,  _______, BL_INC
+      ),
+
+  /* Layer 3: Macro layer
    *
    * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
    * │ ∅ │ ∅ │ ∅ │ ∅ │ ∅ │ ∅ │ ∅ │ ∅ │ ∅ │ ∅ │ ∅ │ ∅ │ ∅ │ ∅ │ ∅ │
@@ -79,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *           └───┴───┴───────────────────────┴───┴───┘
    *
    */
-  [2] = LAYOUT_60_tsangan_hhkb(
+  [3] = LAYOUT_60_tsangan_hhkb(
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, RECORD1, RECORD2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
