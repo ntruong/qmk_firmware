@@ -1,14 +1,28 @@
+/* Copyright 2021 UTDKeyboard & Dominic Gan
+ * 
+ * this program is free software: you can redistribute it and/or modify 
+ * it under the terms of the gnu general public license as published by 
+ * the free software foundation, either version 2 of the license, or 
+ * (at your option) any later version. 
+ * 
+ * this program is distributed in the hope that it will be useful, 
+ * but without any warranty; without even the implied warranty of 
+ * merchantability or fitness for a particular purpose.  see the 
+ * gnu general public license for more details. 
+ * 
+ * you should have received a copy of the gnu general public license 
+ * along with this program.  if not, see <http://www.gnu.org/licenses/>. 
+ */ 
 #pragma once
 
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x6060
+#define PRODUCT_ID      0x001C
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    UTD
 #define PRODUCT         UTD80
-#define DESCRIPTION     qmk keyboard firmware for UTD80
 
 /* key matrix size */
 #define MATRIX_ROWS 6
@@ -28,6 +42,9 @@
 
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
+
+#define LED_CAPS_LOCK_PIN B6
+#define LED_SCROLL_LOCK_PIN B5
 
 /* define if matrix has ghost */
 //#define MATRIX_HAS_GHOST
